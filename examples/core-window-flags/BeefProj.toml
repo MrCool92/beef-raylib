@@ -1,0 +1,6 @@
+FileVersion = 1
+Dependencies = {corlib = "*", beef-raylib = "*"}
+
+[Project]
+Name = "core-window-flags"
+StartupObject = "core_window_flags.Program"

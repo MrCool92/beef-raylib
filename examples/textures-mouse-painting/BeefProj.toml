@@ -1,0 +1,6 @@
+FileVersion = 1
+Dependencies = {corlib = "*", beef-raylib = "*"}
+
+[Project]
+Name = "textures-mouse-painting"
+StartupObject = "textures_mouse_painting.Program"

@@ -1,0 +1,6 @@
+FileVersion = 1
+Dependencies = {corlib = "*", beef-raylib = "*"}
+
+[Project]
+Name = "core-window-should-close"
+StartupObject = "core_window_should_close.Program"

@@ -1,0 +1,6 @@
+FileVersion = 1
+Dependencies = {corlib = "*", beef-raylib = "*"}
+
+[Project]
+Name = "core-scissor-test"
+StartupObject = "core_scissor_test.Program"

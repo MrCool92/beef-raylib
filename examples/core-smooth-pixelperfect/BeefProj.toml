@@ -1,0 +1,6 @@
+FileVersion = 1
+Dependencies = {corlib = "*", beef-raylib = "*"}
+
+[Project]
+Name = "core-smooth-pixelperfect"
+StartupObject = "core_smooth_pixelperfect.Program"

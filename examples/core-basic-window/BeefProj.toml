@@ -1,0 +1,9 @@
+FileVersion = 1
+Dependencies = {corlib = "*", beef-raylib = "*"}
+
+[Project]
+Name = "core-basic-window"
+StartupObject = "core_basic_window.Program"
+
+[[Project.DistinctOptions]]
+Filter = ""

@@ -1,0 +1,6 @@
+FileVersion = 1
+Dependencies = {corlib = "*", beef-raylib = "*"}
+
+[Project]
+Name = "core-input-mouse-wheel"
+StartupObject = "core_input_mouse_wheel.Program"

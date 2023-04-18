@@ -1,0 +1,9 @@
+FileVersion = 1
+Dependencies = {corlib = "*", beef-raylib = "*"}
+
+[Project]
+Name = "core-storage-values"
+StartupObject = "core_storage_values.Program"
+
+[Configs.Debug.Win64]
+DebugWorkingDirectory = "$(BuildDir)"

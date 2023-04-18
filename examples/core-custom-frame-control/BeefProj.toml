@@ -1,0 +1,6 @@
+FileVersion = 1
+Dependencies = {corlib = "*", beef-raylib = "*"}
+
+[Project]
+Name = "core-custom-frame-control"
+StartupObject = "core_custom_frame_control.Program"

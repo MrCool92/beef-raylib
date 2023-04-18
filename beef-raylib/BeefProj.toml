@@ -1,0 +1,14 @@
+FileVersion = 1
+
+[Project]
+Name = "beef-raylib"
+DefaultNamespace = "Raylib"
+
+[Configs.Debug.Win64]
+OtherLinkFlags = "$(LinkFlags) -libpath:\"$(WorkspaceDir)/dist/Debug_Win64/\""
+CLibType = "DynamicDebug"
+LibPaths = ["$(WorkspaceDir)/dist/Debug_Win64/raylib.lib"]
+PostBuildCmds = ["CopyToDependents(\"$(WorkspaceDir)/dist/Debug_Win64/*.dll\")"]
+
+[Configs.Release.Win64]
+CLibType = "Dynamic"
