@@ -8,7 +8,7 @@
 *        - removed comments
 *
 *    Credits:
-*        Berni (@Berni8k) and Ramon Santamaria (@raysan5) for providing original example
+*        Berni (@Berni8k) and Ramon Santamaria (@raysan5) for providing the original example
 * 
 ********************************************************************************************/
 

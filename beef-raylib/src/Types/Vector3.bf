@@ -81,5 +81,16 @@ public struct Vector3
         a.z + (b.z - a.z) * t
         );
 
+    [Inline]
+    public static Vector3 MoveTowards(Vector3 from, Vector3 to, float step)
+    {
+        Vector3 delta = to - from;
+        float magnitude = delta.Magnitude;
+        if (magnitude < step)
+            return to;
+        else
+            return delta.Normalized * step + from;
+    }
+
     // TODO
 }

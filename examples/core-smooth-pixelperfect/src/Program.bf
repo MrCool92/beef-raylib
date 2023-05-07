@@ -8,7 +8,7 @@
 *        - removed comments
 *
 *    Credits:
-*        Giancamillo Alessandroni (@NotManyIdeasDev) and Ramon Santamaria (@raysan5) for providing original example
+*        Giancamillo Alessandroni (@NotManyIdeasDev) and Ramon Santamaria (@raysan5) for providing the original example
 * 
 ********************************************************************************************/
 

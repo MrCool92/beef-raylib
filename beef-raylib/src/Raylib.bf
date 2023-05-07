@@ -110,6 +110,9 @@ static
 
     // Screen-space-related functions
     // TODO
+    /// Get the screen space position for a 3d world space position
+    [CLink, CallingConvention(.Cdecl)] public static extern Vector2 GetWorldToScreen(Vector3 position, Camera camera);
+    // TODO
 
     // Timing-related functions
     /// Set target FPS (maximum)
@@ -331,6 +334,8 @@ static
     // TODO
 
     // Text font info functions
+    /// Measure string width for default font
+    [CLink, CallingConvention(.Cdecl)] public static extern int32 MeasureText(char8* text, int32 fontSize);
     // TODO
 
     // Text codepoints management functions (unicode characters)
@@ -343,11 +348,6 @@ static
     // TODO
     /// Text formatting with variables (sprintf() style)
     [CLink, CallingConvention(.Cdecl)] public static extern char8* TextFormat(char8* text, ...);
-
-
-    //------------------------------------------------------------------------------------
-    // Basic 3d Shapes Drawing Functions (Module: models)
-    //------------------------------------------------------------------------------------
 
     // Basic geometric 3D shapes drawing functions
     // TODO
@@ -385,7 +385,14 @@ static
     // TODO
 
     // Audio device management functions
-    // TODO
+    /// Initialize audio device and context
+    [CLink, CallingConvention(.Cdecl)] public static extern void InitAudioDevice();
+    /// Close the audio device and context
+    [CLink, CallingConvention(.Cdecl)] public static extern void CloseAudioDevice();
+    /// Check if audio device has been initialized successfully
+    //[CLink, CallingConvention(.Cdecl)] public static extern bool IsAudioDeviceReady();
+    /// Set master volume (listener)
+    //[CLink, CallingConvention(.Cdecl)] public static extern void SetMasterVolume(float volume);
 
     // Wave/Sound loading/unloading functions
     // TODO

@@ -9,7 +9,7 @@
 *        - refactored for readability
 *
 *    Credits:
-*        Anata (@anatagawa) and Ramon Santamaria (@raysan5) for providing original example
+*        Anata (@anatagawa) and Ramon Santamaria (@raysan5) for providing the original example
 * 
 ********************************************************************************************/
 

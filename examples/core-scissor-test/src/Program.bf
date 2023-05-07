@@ -8,7 +8,7 @@
 *        - removed comments
 *
 *    Credits:
-*        Chris Dill (@MysteriousSpace) for providing original example
+*        Chris Dill (@MysteriousSpace) for providing the original example
 * 
 ********************************************************************************************/
 

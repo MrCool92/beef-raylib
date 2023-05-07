@@ -8,7 +8,7 @@
 *        - removed comments
 *
 *    Credits:
-*        Jeffery Myers (@JeffM2501) for providing original example
+*        Jeffery Myers (@JeffM2501) for providing the original example
 * 
 ********************************************************************************************/
 

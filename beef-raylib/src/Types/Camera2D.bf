@@ -20,6 +20,6 @@ public struct Camera2D
         this.offset = .();
         this.target = .();
         this.rotation = 0;
-        this.zoom = 0;
+        this.zoom = 1f;
     }
 }
