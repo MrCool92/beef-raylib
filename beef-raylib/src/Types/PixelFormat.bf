@@ -11,41 +11,41 @@ public enum PixelFormat : int32
     /// 8*2 bpp (2 channels)
     UncompressedGrayAlpha,
     /// 16 bpp
-    UncompressedR5g6b5,
+    UncompressedR5G6B5,
     /// 24 bpp
-    UncompressedR8g8b8,
+    UncompressedR8G8B8,
     /// 16 bpp (1 bit alpha)
-    UncompressedR5g5b5a1,
+    UncompressedR5G5B5A1,
     /// 16 bpp (4 bit alpha)
-    UncompressedR4g4b4a4,
+    UncompressedR4G4B4A4,
     /// 32 bpp
-    UncompressedR8g8b8a8,
+    UncompressedR8G8B8A8,
     /// 32 bpp (1 channel - float)
     UncompressedR32,
     /// 32*3 bpp (3 channels - float)
-    UncompressedR32g32b32,
+    UncompressedR32G32B32,
     /// 32*4 bpp (4 channels - float)
-    UncompressedR32g32b32a32,
+    UncompressedR32G32B32A32,
     /// 4 bpp (no alpha)
-    CompressedDxt1Rgb,
+    CompressedDxt1RGB,
     /// 4 bpp (1 bit alpha)
-    CompressedDxt1Rgba,
+    CompressedDxt1RGBA,
     /// 8 bpp
-    CompressedDxt3Rgba,
+    CompressedDxt3RGBA,
     /// 8 bpp
-    CompressedDxt5Rgba,
+    CompressedDxt5RGBA,
     /// 4 bpp
-    CompressedEtc1Rgb,
+    CompressedEtc1RGB,
     /// 4 bpp
-    CompressedEtc2Rgb,
+    CompressedEtc2RGB,
     /// 8 bpp
-    CompressedEtc2EacRgba,
+    CompressedEtc2EacRGBA,
     /// 4 bpp
-    CompressedPvrtRgb,
+    CompressedPvrtRGB,
     /// 4 bpp
-    CompressedPvrtRgba,
+    CompressedPvrtRGBA,
     /// 8 bpp
-    CompressedAstc4x4Rgba,
+    CompressedAstc4x4RGBA,
     /// 2 bpp
-    CompressedAstc8x8Rgba
+    CompressedAstc8x8RGBA
 }

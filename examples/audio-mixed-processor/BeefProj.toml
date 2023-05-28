@@ -1,0 +1,6 @@
+FileVersion = 1
+Dependencies = {corlib = "*", beef-raylib = "*"}
+
+[Project]
+Name = "audio-mixed-processor"
+StartupObject = "audio_mixed_processor.Program"

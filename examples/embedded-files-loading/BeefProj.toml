@@ -1,0 +1,6 @@
+FileVersion = 1
+Dependencies = {corlib = "*", beef-raylib = "*", resources = "*"}
+
+[Project]
+Name = "embedded-files-loading"
+StartupObject = "embedded_files_loading.Program"

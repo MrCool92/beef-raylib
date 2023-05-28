@@ -1,0 +1,6 @@
+FileVersion = 1
+Dependencies = {corlib = "*", beef-raylib = "*"}
+
+[Project]
+Name = "audio-raw-stream"
+StartupObject = "audio_raw_stream.Program"

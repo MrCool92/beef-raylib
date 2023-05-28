@@ -1,0 +1,6 @@
+FileVersion = 1
+Dependencies = {corlib = "*", beef-raylib = "*"}
+
+[Project]
+Name = "audio-sound-loading"
+StartupObject = "audio_sound_loading.Program"

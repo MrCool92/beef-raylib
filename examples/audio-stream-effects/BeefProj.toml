@@ -1,0 +1,6 @@
+FileVersion = 1
+Dependencies = {corlib = "*", beef-raylib = "*"}
+
+[Project]
+Name = "audio-stream-effects"
+StartupObject = "audio_stream_effects.Program"

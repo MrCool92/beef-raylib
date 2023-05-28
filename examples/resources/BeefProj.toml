@@ -1,0 +1,9 @@
+FileVersion = 1
+
+[Project]
+Name = "resources"
+TargetType = "BeefLib"
+StartupObject = "resources.Program"
+
+[Configs.Debug.Win64]
+CLibType = "Static"

@@ -232,6 +232,9 @@ static
 
     // Basic shapes drawing functions
     // TODO
+    /// Draw a pixel (Vector version)
+    [CLink, CallingConvention(.Cdecl)] public static extern void DrawPixelV(Vector2 position, Color color);
+    // TODO
     /// Draw a line
     [CLink, CallingConvention(.Cdecl)] public static extern void DrawLine(int32 startPosX, int32 startPosY, int32 endPosX, int32 endPosY, Color color);
     // TODO
@@ -267,6 +270,8 @@ static
     // TODO
 
     // Image loading functions
+    /// Load image from file into CPU memory (RAM)
+    [CLink, CallingConvention(.Cdecl)] public static extern Image LoadImage(char8* fileName);
     // TODO
     /// Load image from GPU texture data
     [CLink, CallingConvention(.Cdecl)] public static extern Image LoadImageFromTexture(Texture2D texture);
@@ -292,6 +297,8 @@ static
     // Texture loading functions
     /// Load texture from file into GPU memory (VRAM)
     [CLink, CallingConvention(.Cdecl)] public static extern Texture2D LoadTexture(char8* fileName);
+    /// Load texture from image data
+    [CLink, CallingConvention(.Cdecl)] public static extern Texture2D LoadTextureFromImage(Image image);
     // TODO
     [CLink, CallingConvention(.Cdecl)] public static extern RenderTexture2D LoadRenderTexture(int32 width, int32 height);
     // TODO
@@ -396,15 +403,67 @@ static
 
     // Wave/Sound loading/unloading functions
     // TODO
+    /// Load sound from file
+    [CLink, CallingConvention(.Cdecl)] public static extern Sound LoadSound(char8* fileName);
+    /// Load sound from wave data
+    [CLink, CallingConvention(.Cdecl)] public static extern Sound LoadSoundFromWave(Wave wave);
+    // TODO
+    /// Unload sound
+    [CLink, CallingConvention(.Cdecl)] public static extern void UnloadSound(Sound sound);
+    // TODO
 
     // Wave/Sound management functions
+    /// Play a sound
+    [CLink, CallingConvention(.Cdecl)] public static extern void PlaySound(Sound sound);
     // TODO
 
     // Music management functions
+    /// Load music stream from file
+    [CLink, CallingConvention(.Cdecl)] public static extern Music LoadMusicStream(char8* fileName);
     // TODO
+    /// Unload music stream
+    [CLink, CallingConvention(.Cdecl)] public static extern void UnloadMusicStream(Music music);
+    /// Start music playing
+    [CLink, CallingConvention(.Cdecl)] public static extern void PlayMusicStream(Music music);
+    // TODO
+    /// Updates buffers for music streaming
+    [CLink, CallingConvention(.Cdecl)] public static extern void UpdateMusicStream(Music music);
+    /// Stop music playing
+    [CLink, CallingConvention(.Cdecl)] public static extern void StopMusicStream(Music music);
+    /// Pause music playing
+    [CLink, CallingConvention(.Cdecl)] public static extern void PauseMusicStream(Music music);
+    /// Resume playing paused music
+    [CLink, CallingConvention(.Cdecl)] public static extern void ResumeMusicStream(Music music);
+    // TODO
+    /// Set pitch for a music (1.0 is base level)
+    [CLink, CallingConvention(.Cdecl)] public static extern void SetMusicPitch(Music music, float pitch);
+    /// Get music time length (in seconds)
+    [CLink, CallingConvention(.Cdecl)] public static extern float GetMusicTimeLength(Music music);
+    /// Get current music time played (in seconds)
+    [CLink, CallingConvention(.Cdecl)] public static extern float GetMusicTimePlayed(Music music);
 
     // AudioStream management functions
+    [CLink, CallingConvention(.Cdecl)] public static extern AudioStream LoadAudioStream(uint32 sampleRate, uint32 sampleSize, uint32 channels);
     // TODO
+    [CLink, CallingConvention(.Cdecl)] public static extern void UnloadAudioStream(AudioStream stream);
+    // TODO
+    /// Play audio stream
+    [CLink, CallingConvention(.Cdecl)] public static extern void PlayAudioStream(AudioStream stream);
+    // TODO
+    /// Set pan for audio stream (0.5 is centered)
+    [CLink, CallingConvention(.Cdecl)] public static extern void SetAudioStreamPan(AudioStream stream, float pan);
+    /// Default size for new audio streams
+    [CLink, CallingConvention(.Cdecl)] public static extern void SetAudioStreamBufferSizeDefault(int32 size);
+    [CLink, CallingConvention(.Cdecl)] public static extern void SetAudioStreamCallback(AudioStream stream, AudioCallback callback);
 
+    /// Attach audio stream processor to stream
+    [CLink, CallingConvention(.Cdecl)] public static extern void AttachAudioStreamProcessor(AudioStream stream, AudioCallback processor);
+    /// Detach audio stream processor from stream
+    [CLink, CallingConvention(.Cdecl)] public static extern void DetachAudioStreamProcessor(AudioStream stream, AudioCallback processor);
+
+    /// Attach audio stream processor to the entire audio pipeline
+    [CLink, CallingConvention(.Cdecl)] public static extern void AttachAudioMixedProcessor(AudioCallback processor);
+    /// Detach audio stream processor from the entire audio pipeline
+    [CLink, CallingConvention(.Cdecl)] public static extern void DetachAudioMixedProcessor(AudioCallback processor);
 }
 

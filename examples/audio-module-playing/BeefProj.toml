@@ -1,0 +1,6 @@
+FileVersion = 1
+Dependencies = {corlib = "*", beef-raylib = "*"}
+
+[Project]
+Name = "audio-module-playing"
+StartupObject = "audio_module_playing.Program"
