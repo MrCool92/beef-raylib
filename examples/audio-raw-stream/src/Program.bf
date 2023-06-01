@@ -51,8 +51,6 @@ class Program
 
         int16* data = scope int16[MAX_SAMPLES]*;
 
-        int16* writeBuf = scope int16[MAX_SAMPLES_PER_UPDATE]*;
-
         PlayAudioStream(stream);
 
         Vector2 mousePosition = .(-100f, -100f);
@@ -85,7 +83,7 @@ class Program
                 if (waveLength < 1)
                     waveLength = 1;
 
-                for (int i = 0; i < waveLength * 2; i++)
+                for (int i < waveLength * 2)
                     data[i] = (int16)(Math.Sin(((2 * Math.PI_f * (float)i / waveLength))) * 32000);
 
                 for (int j = waveLength * 2; j < MAX_SAMPLES; j++)
@@ -102,7 +100,7 @@ class Program
             DrawText(TextFormat("sine frequency: %i", (int32)frequency), GetScreenWidth() - 220, 10, 20, .Red);
             DrawText("click mouse button to change frequency or pan", 10, 10, 20, .DarkGray);
 
-            for (int i = 0; i < screenWidth; i++)
+            for (int i < screenWidth)
             {
                 position.x = i;
                 position.y = 250 + 50f * data[i * MAX_SAMPLES / screenWidth] / 32000f;

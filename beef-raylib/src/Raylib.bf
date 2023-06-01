@@ -49,6 +49,10 @@ static
 
     // Cursor-related functions
     // TODO
+    /// Check if cursor is not visible
+    [CLink, CallingConvention(.Cdecl)] public static extern bool IsCursorHidden();
+    /// Enables cursor (unlock cursor)
+    [CLink, CallingConvention(.Cdecl)] public static extern void EnableCursor();
     /// Disables cursor (lock cursor)
     [CLink, CallingConvention(.Cdecl)] public static extern void DisableCursor();
     // TODO
@@ -109,6 +113,8 @@ static
     [CLink, CallingConvention(.Cdecl)] public static extern void UnloadShader(Shader shader);
 
     // Screen-space-related functions
+    /// Get a ray trace from mouse position
+    [CLink, CallingConvention(.Cdecl)] public static extern Ray GetMouseRay(Vector2 mousePosition, Camera camera);
     // TODO
     /// Get the screen space position for a 3d world space position
     [CLink, CallingConvention(.Cdecl)] public static extern Vector2 GetWorldToScreen(Vector3 position, Camera camera);
@@ -133,6 +139,9 @@ static
     /// Show trace log messages (LOG_DEBUG, LOG_INFO, LOG_WARNING, LOG_ERROR...)
     [CLink, CallingConvention(.Cdecl)] public static extern void TraceLog(TraceLogLevel logLevel, char8* text, ...);
     // TODO
+    /// Internal memory allocator
+    [CLink, CallingConvention(.Cdecl)] public static extern void* MemAlloc(uint32 size);
+    // TODO
 
     // Set custom callbacks
     /// Set custom trace log
@@ -146,7 +155,12 @@ static
     [CLink, CallingConvention(.Cdecl)] public static extern void UnloadFileData(uint8* data);
     /// Save data to file from byte array (write), returns true on success
     [CLink, CallingConvention(.Cdecl)] public static extern bool SaveFileData(char8* fileName, void* data, uint32 bytesToWrite);
-
+    // TODO
+    /// Check file extension (including point: .png, .wav)
+    [CLink, CallingConvention(.Cdecl)] public static extern bool IsFileExtension(char8* fileName, char8* ext);
+    // TODO
+    [CLink, CallingConvention(.Cdecl)] public static extern char8* GetFileName(char8* filePath);
+    // TODO
     /// Check if a file has been dropped into window
     [CLink, CallingConvention(.Cdecl)] public static extern bool IsFileDropped();
     /// Load dropped filepaths
@@ -265,6 +279,8 @@ static
 
     // Basic shapes collision detection functions
     // TODO
+    /// Check collision between circle and rectangle
+    [CLink, CallingConvention(.Cdecl)] public static extern bool CheckCollisionCircleRec(Vector2 center, float radius, Rectangle rec);
     /// Check if point is inside rectangle
     [CLink, CallingConvention(.Cdecl)] public static extern bool CheckCollisionPointRec(Vector2 point, Rectangle rec);
     // TODO
@@ -284,11 +300,19 @@ static
 
     // Image generation functions
     // TODO
+    /// Generate image: checked
+    [CLink, CallingConvention(.Cdecl)] public static extern Image GenImageChecked(int32 width, int32 height, int32 checksX, int32 checksY, Color col1, Color col2);
+    // TODO
 
     // Image manipulation functions
     // TODO
     /// Flip image vertically
     [CLink, CallingConvention(.Cdecl)] public static extern void ImageFlipVertical(Image* image);
+    // TODO
+    /// Load color data from image as a Color array (RGBA - 32bit)
+    [CLink, CallingConvention(.Cdecl)] public static extern Color* LoadImageColors(Image image);
+    /// Unload color data loaded with LoadImageColors()
+    [CLink, CallingConvention(.Cdecl)] public static extern void UnloadImageColors(Color* colors);
     // TODO
 
     // Image drawing functions
@@ -299,7 +323,9 @@ static
     [CLink, CallingConvention(.Cdecl)] public static extern Texture2D LoadTexture(char8* fileName);
     /// Load texture from image data
     [CLink, CallingConvention(.Cdecl)] public static extern Texture2D LoadTextureFromImage(Image image);
-    // TODO
+    /// Load cubemap from image, multiple image cubemap layouts supported
+    [CLink, CallingConvention(.Cdecl)] public static extern TextureCubemap LoadTextureCubemap(Image image, CubemapLayout layout);
+    /// Load texture for rendering (framebuffer)
     [CLink, CallingConvention(.Cdecl)] public static extern RenderTexture2D LoadRenderTexture(int32 width, int32 height);
     // TODO
     //// Unload texture from GPU memory (VRAM)
@@ -318,16 +344,20 @@ static
     /// Draw a Texture2D
     [CLink, CallingConvention(.Cdecl)] public static extern void DrawTexture(Texture2D texture, int32 posX, int32 posY, Color tint);
     // TODO
+    /// Draw a Texture2D with extended parameters
+    [CLink, CallingConvention(.Cdecl)] public static extern void DrawTextureEx(Texture2D texture, Vector2 position, float rotation, float scale, Color tint);
     /// Draw a part of a texture defined by a rectangle
     [CLink, CallingConvention(.Cdecl)] public static extern void DrawTextureRec(Texture2D texture, Rectangle source, Vector2 position, Color tint);
+    /// Draw a part of a texture defined by a rectangle with 'pro' parameters
+    [CLink, CallingConvention(.Cdecl)] public static extern void DrawTexturePro(Texture2D texture, Rectangle source, Rectangle dest, Vector2 origin, float rotation, Color tint);
     // TODO
 
     // Color/pixel related functions
     /// Get color with alpha applied, alpha goes from 0.0f to 1.0f
     [CLink, CallingConvention(.Cdecl)] public static extern Color Fade(Color color, float alpha);
     // TODO
-    /// Draw a part of a texture defined by a rectangle with 'pro' parameters
-    [CLink, CallingConvention(.Cdecl)] public static extern void DrawTexturePro(Texture2D texture, Rectangle source, Rectangle dest, Vector2 origin, float rotation, Color tint);
+    /// Get a Color from HSV values, hue [0..360], saturation/value [0..1]
+    [CLink, CallingConvention(.Cdecl)] public static extern Color ColorFromHSV(float hue, float saturation, float value);
     // TODO
 
     // Font loading/unloading functions
@@ -351,45 +381,139 @@ static
     // Text strings management functions (no UTF-8 strings, only byte chars)
     /// Copy one string to another, returns bytes copied
     [CLink, CallingConvention(.Cdecl)] public static extern int32 TextCopy(char8* dst, char8* src);
+    /// Check if two text string are equal
     [CLink, CallingConvention(.Cdecl)] public static extern bool TextIsEqual(char8* text1, char8* text2); // Check if two text string are equal
     // TODO
     /// Text formatting with variables (sprintf() style)
     [CLink, CallingConvention(.Cdecl)] public static extern char8* TextFormat(char8* text, ...);
 
     // Basic geometric 3D shapes drawing functions
+    /// Draw a line in 3D world space
+    [CLink, CallingConvention(.Cdecl)] public static extern void DrawLine3D(Vector3 startPos, Vector3 endPos, Color color);
+    // TODO
+    /// Draw a circle in 3D world space
+    [CLink, CallingConvention(.Cdecl)] public static extern void DrawCircle3D(Vector3 center, float radius, Vector3 rotationAxis, float rotationAngle, Color color);
     // TODO
     /// Draw cube
     [CLink, CallingConvention(.Cdecl)] public static extern void DrawCube(Vector3 position, float width, float height, float length, Color color);
+    /// Draw cube (Vector version)
+    [CLink, CallingConvention(.Cdecl)] public static extern void DrawCubeV(Vector3 position, Vector3 size, Color color);
     // TODO
     /// Draw cube wires
     [CLink, CallingConvention(.Cdecl)] public static extern void DrawCubeWires(Vector3 position, float width, float height, float length, Color color);
     // TODO
+    /// Draw sphere
+    [CLink, CallingConvention(.Cdecl)] public static extern void DrawSphere(Vector3 centerPos, float radius, Color color);
+    // TODO
+    /// Draw sphere wires
+    [CLink, CallingConvention(.Cdecl)] public static extern void DrawSphereWires(Vector3 centerPos, float radius, int32 rings, int32 slices, Color color);
+    // TODO
+    /// Draw a cylinder/cone
+    [CLink, CallingConvention(.Cdecl)] public static extern void DrawCylinder(Vector3 position, float radiusTop, float radiusBottom, float height, int slices, Color color);
+    // TODO
+    /// Draw a cylinder/cone wires
+    [CLink, CallingConvention(.Cdecl)] public static extern void DrawCylinderWires(Vector3 position, float radiusTop, float radiusBottom, float height, int slices, Color color);
+    // TODO
+    /// Draw a capsule with the center of its sphere caps at startPos and endPos
+    [CLink, CallingConvention(.Cdecl)] public static extern void DrawCapsule(Vector3 startPos, Vector3 endPos, float radius, int slices, int rings, Color color);
+    /// Draw capsule wireframe with the center of its sphere caps at startPos and endPos
+    [CLink, CallingConvention(.Cdecl)] public static extern void DrawCapsuleWires(Vector3 startPos, Vector3 endPos, float radius, int slices, int rings, Color color);
     /// Draw a plane XZ
     [CLink, CallingConvention(.Cdecl)] public static extern void DrawPlane(Vector3 centerPos, Vector2 size, Color color);
-    // TODO
+    /// Draw a ray line
+    [CLink, CallingConvention(.Cdecl)] public static extern void DrawRay(Ray ray, Color color);
     /// Draw a grid (centered at (0, 0, 0))
     [CLink, CallingConvention(.Cdecl)] public static extern void DrawGrid(int32 slices, float spacing);
 
     // Model management functions
+    /// Load model from files (meshes and materials)
+    [CLink, CallingConvention(.Cdecl)] public static extern Model LoadModel(char8* fileName);
+    /// Load model from generated mesh (default material)
+    [CLink, CallingConvention(.Cdecl)] public static extern Model LoadModelFromMesh(Mesh mesh);
     // TODO
+    /// Unload model (including meshes) from memory (RAM and/or VRAM)
+    [CLink, CallingConvention(.Cdecl)] public static extern void UnloadModel(Model model);
+    /// Compute model bounding box limits (considers all meshes)
+    [CLink, CallingConvention(.Cdecl)] public static extern BoundingBox GetModelBoundingBox(Model model);
 
     // Model drawing functions
+    /// Draw a model (with texture if set)
+    [CLink, CallingConvention(.Cdecl)] public static extern void DrawModel(Model model, Vector3 position, float scale, Color tint);
+    /// Draw a model with extended parameters
+    [CLink, CallingConvention(.Cdecl)] public static extern void DrawModelEx(Model model, Vector3 position, Vector3 rotationAxis, float rotationAngle, Vector3 scale, Color tint);
     // TODO
+    /// Draw bounding box (wires)
+    [CLink, CallingConvention(.Cdecl)] public static extern void DrawBoundingBox(BoundingBox @box, Color color);
+    /// Draw a billboard texture
+    [CLink, CallingConvention(.Cdecl)] public static extern void DrawBillboard(Camera camera, Texture2D texture, Vector3 position, float size, Color tint);
+    // TODO
+    /// Draw a billboard texture defined by source and rotation
+    [CLink, CallingConvention(.Cdecl)] public static extern void DrawBillboardPro(Camera camera, Texture2D texture, Rectangle source, Vector3 position, Vector3 up, Vector2 size, Vector2 origin, float rotation, Color tint);
 
     // Mesh management functions
+    /// Upload mesh vertex data in GPU and provide VAO/VBO ids
+    [CLink, CallingConvention(.Cdecl)] public static extern void UploadMesh(Mesh* mesh, bool dynamic);
+    // TODO
+    /// Compute mesh bounding box limits
+    [CLink, CallingConvention(.Cdecl)] public static extern BoundingBox GetMeshBoundingBox(Mesh mesh);
     // TODO
 
     // Mesh generation functions
-    // TODO
+    /// Generate polygonal mesh
+    [CLink, CallingConvention(.Cdecl)] public static extern Mesh GenMeshPoly(int32 sides, float radius);
+    /// Generate plane mesh (with subdivisions)
+    [CLink, CallingConvention(.Cdecl)] public static extern Mesh GenMeshPlane(float width, float length, int32 resX, int32 resZ);
+    /// Generate cuboid mesh
+    [CLink, CallingConvention(.Cdecl)] public static extern Mesh GenMeshCube(float width, float height, float length);
+    /// Generate sphere mesh (standard sphere)
+    [CLink, CallingConvention(.Cdecl)] public static extern Mesh GenMeshSphere(float radius, int32 rings, int32 slices);
+    /// Generate half-sphere mesh (no bottom cap)
+    [CLink, CallingConvention(.Cdecl)] public static extern Mesh GenMeshHemiSphere(float radius, int32 rings, int32 slices);
+    /// Generate cylinder mesh
+    [CLink, CallingConvention(.Cdecl)] public static extern Mesh GenMeshCylinder(float radius, float height, int32 slices);
+    /// Generate cone/pyramid mesh
+    [CLink, CallingConvention(.Cdecl)] public static extern Mesh GenMeshCone(float radius, float height, int32 slices);
+    /// Generate torus mesh
+    [CLink, CallingConvention(.Cdecl)] public static extern Mesh GenMeshTorus(float radius, float size, int32 radSeg, int32 sides);
+    /// Generate trefoil knot mesh
+    [CLink, CallingConvention(.Cdecl)] public static extern Mesh GenMeshKnot(float radius, float size, int32 radSeg, int32 sides);
+    /// Generate heightmap mesh from image data
+    [CLink, CallingConvention(.Cdecl)] public static extern Mesh GenMeshHeightmap(Image heightmap, Vector3 size);
+    /// Generate cubes-based map mesh from image data
+    [CLink, CallingConvention(.Cdecl)] public static extern Mesh GenMeshCubicmap(Image cubicmap, Vector3 cubeSize);
 
     // Material loading/unloading functions
     // TODO
+    [CLink, CallingConvention(.Cdecl)] public static extern void SetMaterialTexture(Material* material, MaterialMapIndex mapType, Texture2D texture);
+    // TODO
 
     // Model animations loading/unloading functions
+    /// Load model animations from file
+    [CLink, CallingConvention(.Cdecl)] public static extern ModelAnimation* LoadModelAnimations(char8* fileName, uint32* animCount);
+    /// Update model animation pose
+    [CLink, CallingConvention(.Cdecl)] public static extern void UpdateModelAnimation(Model model, ModelAnimation anim, int32 frame);
+    /// Unload animation data
+    [CLink, CallingConvention(.Cdecl)] public static extern void UnloadModelAnimation(ModelAnimation anim);
+    /// Unload animation array data
+    [CLink, CallingConvention(.Cdecl)] public static extern void UnloadModelAnimations(ModelAnimation* animations, uint32 count);
     // TODO
 
     // Collision detection functions
     // TODO
+    // Check collision between two bounding boxes
+    [CLink, CallingConvention(.Cdecl)] public static extern bool CheckCollisionBoxes(BoundingBox box1, BoundingBox box2);
+    /// Check collision between box and sphere
+    [CLink, CallingConvention(.Cdecl)] public static extern bool CheckCollisionBoxSphere(BoundingBox @box, Vector3 center, float radius);
+    /// Get collision info between ray and sphere
+    [CLink, CallingConvention(.Cdecl)] public static extern RayCollision GetRayCollisionSphere(Ray ray, Vector3 center, float radius);
+    /// Get collision info between ray and box
+    [CLink, CallingConvention(.Cdecl)] public static extern RayCollision GetRayCollisionBox(Ray ray, BoundingBox @box);
+    // Get collision info between ray and mesh
+    [CLink, CallingConvention(.Cdecl)] public static extern RayCollision GetRayCollisionMesh(Ray ray, Mesh mesh, Matrix transform);
+    /// Get collision info between ray and triangle
+    [CLink, CallingConvention(.Cdecl)] public static extern RayCollision GetRayCollisionTriangle(Ray ray, Vector3 p1, Vector3 p2, Vector3 p3);
+    /// Get collision info between ray and quad
+    [CLink, CallingConvention(.Cdecl)] public static extern RayCollision GetRayCollisionQuad(Ray ray, Vector3 p1, Vector3 p2, Vector3 p3, Vector3 p4);
 
     // Audio device management functions
     /// Initialize audio device and context
@@ -454,6 +578,7 @@ static
     [CLink, CallingConvention(.Cdecl)] public static extern void SetAudioStreamPan(AudioStream stream, float pan);
     /// Default size for new audio streams
     [CLink, CallingConvention(.Cdecl)] public static extern void SetAudioStreamBufferSizeDefault(int32 size);
+    /// Audio thread callback to request new data
     [CLink, CallingConvention(.Cdecl)] public static extern void SetAudioStreamCallback(AudioStream stream, AudioCallback callback);
 
     /// Attach audio stream processor to stream

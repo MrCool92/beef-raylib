@@ -1,0 +1,6 @@
+FileVersion = 1
+Dependencies = {corlib = "*", beef-raylib = "*"}
+
+[Project]
+Name = "models-first-person-maze"
+StartupObject = "models_first_person_maze.Program"

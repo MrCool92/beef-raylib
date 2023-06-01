@@ -1,0 +1,6 @@
+FileVersion = 1
+Dependencies = {corlib = "*", beef-raylib = "*"}
+
+[Project]
+Name = "models-loading-m3d"
+StartupObject = "models_loading_m3d.Program"

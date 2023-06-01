@@ -1,0 +1,6 @@
+FileVersion = 1
+Dependencies = {corlib = "*", beef-raylib = "*"}
+
+[Project]
+Name = "models-yaw-pitch-roll"
+StartupObject = "models_yaw_pitch_roll.Program"

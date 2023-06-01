@@ -2,11 +2,10 @@ using System;
 
 namespace Raylib;
 
+/// Vector3, 3 components
 [CRepr]
 public struct Vector3
 {
-    public const float Epsilon = 0.00001f;
-
     public const Vector3 Zero    = .(0f,  0f,  0f);
     public const Vector3 One     = .(1f,  1f,  1f);
 
@@ -17,8 +16,11 @@ public struct Vector3
     public const Vector3 Forward = .(0f,  0f,  1f);
     public const Vector3 Back    = .(0f,  0f, -1f);
 
+    /// Vector x component
     public float x;
+    /// Vector y component
     public float y;
+    /// Vector z component
     public float z;
 
     public this()
@@ -49,7 +51,7 @@ public struct Vector3
         get
         {
             float magnitude = Magnitude;
-            return (magnitude > Epsilon) ? this / magnitude : .Zero;
+            return (magnitude > EPSILON) ? this / magnitude : .Zero;
         }
     }
 

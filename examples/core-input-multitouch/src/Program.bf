@@ -43,22 +43,18 @@ class Program
             if (tCount > MAX_TOUCH_POINTS)
                 tCount = MAX_TOUCH_POINTS;
 
-            for (int i = 0; i < tCount; ++i)
-            {
+            for (int i < tCount)
                 touchPositions[i] = GetTouchPosition((int32)i);
-            }
 
             BeginDrawing();
             defer EndDrawing();
 
             ClearBackground(.RayWhite);
 
-            for (int i = 0; i < tCount; ++i)
+            for (int i < tCount)
             {
-                // Make sure point is not (0, 0) as this means there is no touch for it
                 if ((touchPositions[i].x > 0) && (touchPositions[i].y > 0))
                 {
-                    // Draw circle and touch index number
                     DrawCircleV(touchPositions[i], 34, .Orange);
                     DrawText(TextFormat("%d", i), (int32)touchPositions[i].x - 10, (int32)touchPositions[i].y - 70, 40, .Black);
                 }

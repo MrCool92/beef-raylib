@@ -78,7 +78,7 @@ class Program
             DrawText("PRESS SPACE to PAUSE MOVEMENT", 10, GetScreenHeight() - 60, 20, .Gray);
             DrawText("PRESS UP | DOWN to CHANGE TARGET FPS", 10, GetScreenHeight() - 30, 20, .Gray);
             DrawText(TextFormat("TARGET FPS: %i", targetFPS), GetScreenWidth() - 220, 10, 20, .Lime);
-            DrawText(TextFormat("CURRENT FPS: %i", (int)(1f / deltaTime)), GetScreenWidth() - 220, 40, 20, .Green);
+            DrawText(TextFormat("CURRENT FPS: %i", (int32)(1f / deltaTime)), GetScreenWidth() - 220, 40, 20, .Green);
 
             EndDrawing();
 
@@ -97,7 +97,8 @@ class Program
                     deltaTime = (float)(currentTime - previousTime);
                 }
             }
-            else deltaTime = (float)updateDrawTime;
+            else
+                deltaTime = (float)updateDrawTime;
 
             previousTime = currentTime;
         }

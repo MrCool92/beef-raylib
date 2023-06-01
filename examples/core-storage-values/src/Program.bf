@@ -14,6 +14,7 @@
 
 using System;
 using Raylib;
+using Raylib.Beef;
 
 namespace core_storage_values;
 
@@ -86,8 +87,8 @@ class Program
     {
         bool success = false;
 
-        Span<uint8> fileData = LoadFileDataEx(STORAGE_DATA_FILE);
-        defer UnloadFileDataEx(fileData);
+        Span<uint8> fileData = LoadFileDataBf(STORAGE_DATA_FILE);
+        defer UnloadFileDataBf(fileData);
 
         if (!fileData.IsNull)
         {
@@ -97,7 +98,7 @@ class Program
             if (fileData.Length <= ((int)position * sizeof(int)))
             {
                 newDataSize = (int)(position + 1) * sizeof(int);
-                newFileData = new uint8[newDataSize];
+                newFileData = scope uint8[newDataSize];
                 defer:: delete newFileData.Ptr;
                 fileData.CopyTo(newFileData);
 
@@ -123,7 +124,7 @@ class Program
                 dataPtr[(int)position] = value;
             }
 
-            success = SaveFileDataEx(STORAGE_DATA_FILE, newFileData);
+            success = SaveFileDataBf(STORAGE_DATA_FILE, newFileData);
             TraceLog(.Info, "FILEIO: [%s] Saved storage value: %i", STORAGE_DATA_FILE, value);
         }
         else
@@ -137,7 +138,7 @@ class Program
             int* dataPtr = (int*)fileData.Ptr;
             dataPtr[(int)position] = value;
 
-            success = SaveFileDataEx(STORAGE_DATA_FILE, fileData);
+            success = SaveFileDataBf(STORAGE_DATA_FILE, fileData);
             TraceLog(.Info, "FILEIO: [%s] Saved storage value: %i", STORAGE_DATA_FILE, value);
         }
 
@@ -148,7 +149,7 @@ class Program
     {
         int value = 0;
 
-        Span<uint8> fileData = LoadFileDataEx(STORAGE_DATA_FILE);
+        Span<uint8> fileData = LoadFileDataBf(STORAGE_DATA_FILE);
         defer UnloadFileData(fileData.Ptr);
 
         if (!fileData.IsNull)

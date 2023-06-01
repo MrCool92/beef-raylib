@@ -61,23 +61,15 @@ class Program
         Shader distortion = LoadShader(null, TextFormat("../resources/distortion%i.fs", GLSL_VERSION));
         defer UnloadShader(distortion);
 
-        SetShaderValue(distortion, GetShaderLocation(distortion, "leftLensCenter"),
-            &config.leftLensCenter[0], .UniformVec2);
-        SetShaderValue(distortion, GetShaderLocation(distortion, "rightLensCenter"),
-            &config.rightLensCenter[0], .UniformVec2);
-        SetShaderValue(distortion, GetShaderLocation(distortion, "leftScreenCenter"),
-            &config.leftScreenCenter[0], .UniformVec2);
-        SetShaderValue(distortion, GetShaderLocation(distortion, "rightScreenCenter"),
-            &config.rightScreenCenter[0], .UniformVec2);
+        SetShaderValue(distortion, GetShaderLocation(distortion, "leftLensCenter"), &config.leftLensCenter[0], .UniformVec2);
+        SetShaderValue(distortion, GetShaderLocation(distortion, "rightLensCenter"), &config.rightLensCenter[0], .UniformVec2);
+        SetShaderValue(distortion, GetShaderLocation(distortion, "leftScreenCenter"), &config.leftScreenCenter[0], .UniformVec2);
+        SetShaderValue(distortion, GetShaderLocation(distortion, "rightScreenCenter"), &config.rightScreenCenter[0], .UniformVec2);
 
-        SetShaderValue(distortion, GetShaderLocation(distortion, "scale"),
-            &config.scale[0], .UniformVec2);
-        SetShaderValue(distortion, GetShaderLocation(distortion, "scaleIn"),
-            &config.scaleIn[0], .UniformVec2);
-        SetShaderValue(distortion, GetShaderLocation(distortion, "deviceWarpParam"),
-            &device.lensDistortionValues[0], .UniformVec4);
-        SetShaderValue(distortion, GetShaderLocation(distortion, "chromaAbParam"),
-            &device.chromaAbCorrection[0], .UniformVec4);
+        SetShaderValue(distortion, GetShaderLocation(distortion, "scale"), &config.scale[0], .UniformVec2);
+        SetShaderValue(distortion, GetShaderLocation(distortion, "scaleIn"), &config.scaleIn[0], .UniformVec2);
+        SetShaderValue(distortion, GetShaderLocation(distortion, "deviceWarpParam"), &device.lensDistortionValues[0], .UniformVec4);
+        SetShaderValue(distortion, GetShaderLocation(distortion, "chromaAbParam"), &device.chromaAbCorrection[0], .UniformVec4);
 
         RenderTexture2D target = LoadRenderTexture(device.hResolution, device.vResolution);
         defer UnloadRenderTexture(target);
@@ -100,33 +92,32 @@ class Program
             UpdateCamera(&camera, .FirstPerson);
 
             BeginTextureMode(target);
-            {
-                ClearBackground(.RayWhite);
-                BeginVrStereoMode(config);
-                {
-                    BeginMode3D(camera);
-                    {
-                        DrawCube(cubePosition, 2f, 2f, 2f, .Red);
-                        DrawCubeWires(cubePosition, 2f, 2f, 2f, .Maroon);
-                        DrawGrid(40, 1f);
-                    }
-                    EndMode3D();
-                }
-                EndVrStereoMode();
-            }
+
+            ClearBackground(.RayWhite);
+            BeginVrStereoMode(config);
+
+            BeginMode3D(camera);
+
+            DrawCube(cubePosition, 2f, 2f, 2f, .Red);
+            DrawCubeWires(cubePosition, 2f, 2f, 2f, .Maroon);
+            DrawGrid(40, 1f);
+
+            EndMode3D();
+
+            EndVrStereoMode();
+
             EndTextureMode();
 
             BeginDrawing();
-            {
-                ClearBackground(.RayWhite);
-                BeginShaderMode(distortion);
-                {
-                    DrawTexturePro(target.texture, sourceRec, destRec, .Zero, 0, .White);
-                }
-                EndShaderMode();
-                DrawFPS(10, 10);
-            }
-            EndDrawing();
+            defer EndDrawing();
+
+            ClearBackground(.RayWhite);
+            BeginShaderMode(distortion);
+
+            DrawTexturePro(target.texture, sourceRec, destRec, .Zero, 0, .White);
+
+            EndShaderMode();
+            DrawFPS(10, 10);
         }
 
         return 0;

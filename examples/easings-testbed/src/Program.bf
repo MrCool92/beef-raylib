@@ -191,9 +191,9 @@ class Program
 
             if (!paused && ((boundedT && t < d) || !boundedT))
             {
-                ballPosition.x = Easings[easingX].func(t, 100.0f, 700.0f - 100.0f, d);
-                ballPosition.y = Easings[easingY].func(t, 100.0f, 400.0f - 100.0f, d);
-                t += 1.0f;
+                ballPosition.x = Easings[easingX].func(t, 100f, 700f - 100f, d);
+                ballPosition.y = Easings[easingY].func(t, 100f, 400f - 100f, d);
+                t += 1f;
             }
 
             BeginDrawing();
@@ -210,7 +210,7 @@ class Program
             DrawText("Use LEFT or RIGHT keys to choose easing for the x axis", 0, GetScreenHeight() - FONT_SIZE * 4, FONT_SIZE, .LightGray);
             DrawText("Use UP or DOWN keys to choose easing for the y axis", 0, GetScreenHeight() - FONT_SIZE * 5, FONT_SIZE, .LightGray);
 
-            DrawCircleV(ballPosition, 16.0f, .Maroon);
+            DrawCircleV(ballPosition, 16f, .Maroon);
         }
 
         return 0;

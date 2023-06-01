@@ -40,9 +40,9 @@ class Program
 
         Rectangle[] colorsRecs = scope Rectangle[MAX_COLORS_COUNT];
 
-        for (int i = 0; i < MAX_COLORS_COUNT; i++)
+        for (int i < MAX_COLORS_COUNT)
         {
-            colorsRecs[i].x = 10 + 30.0f * i + 2 * i;
+            colorsRecs[i].x = 10 + 30f * i + 2 * i;
             colorsRecs[i].y = 10;
             colorsRecs[i].width = 30;
             colorsRecs[i].height = 30;
@@ -51,7 +51,7 @@ class Program
         int colorSelected = 0;
         int colorSelectedPrev = colorSelected;
         int colorMouseHover = 0;
-        float brushSize = 20.0f;
+        float brushSize = 20f;
         bool mouseWasPressed = false;
 
         Rectangle btnSaveRec = .(750, 10, 40, 30);
@@ -82,14 +82,15 @@ class Program
             else if (colorSelected < 0)
                 colorSelected = 0;
 
-            for (int i = 0; i < MAX_COLORS_COUNT; i++)
+            for (int i < MAX_COLORS_COUNT)
             {
                 if (CheckCollisionPointRec(mousePos, colorsRecs[i]))
                 {
                     colorMouseHover = i;
                     break;
                 }
-                else colorMouseHover = -1;
+                else
+                    colorMouseHover = -1;
             }
 
             if ((colorMouseHover >= 0) && IsMouseButtonPressed(.Left))
@@ -176,12 +177,10 @@ class Program
                     DrawCircle(GetMouseX(), GetMouseY(), brushSize, colors[colorSelected]);
             }
 
-            // Draw top panel
             DrawRectangle(0, 0, GetScreenWidth(), 50, .RayWhite);
             DrawLine(0, 50, GetScreenWidth(), 50, .LightGray);
 
-            // Draw color selection rectangles
-            for (int i = 0; i < MAX_COLORS_COUNT; i++)
+            for (int i < MAX_COLORS_COUNT)
                 DrawRectangleRec(colorsRecs[i], colors[i]);
             DrawRectangleLines(10, 10, 30, 30, .LightGray);
 
@@ -193,11 +192,9 @@ class Program
                 colorsRecs[colorSelected].width + 4, colorsRecs[colorSelected].height + 4
                 ), 2, .Black);
 
-            // Draw save image button
             DrawRectangleLinesEx(btnSaveRec, 2, btnSaveMouseHover ? .Red : .Black);
             DrawText("SAVE!", 755, 20, 10, btnSaveMouseHover ? .Red : .Black);
 
-            // Draw save image message
             if (showSaveMessage)
             {
                 DrawRectangle(0, 0, GetScreenWidth(), GetScreenHeight(), Fade(.RayWhite, 0.8f));

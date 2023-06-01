@@ -1,0 +1,6 @@
+FileVersion = 1
+Dependencies = {corlib = "*", beef-raylib = "*"}
+
+[Project]
+Name = "models-rlgl-solar-system"
+StartupObject = "models_rlgl_solar_system.Program"

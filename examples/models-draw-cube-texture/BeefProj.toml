@@ -1,0 +1,6 @@
+FileVersion = 1
+Dependencies = {corlib = "*", beef-raylib = "*"}
+
+[Project]
+Name = "models-draw-cube-texture"
+StartupObject = "models_draw_cube_texture.Program"

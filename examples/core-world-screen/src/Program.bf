@@ -29,10 +29,7 @@ class Program
 
         Camera camera = .();
         camera.position = .(10f, 10f, 10f);
-        camera.target = .Zero;
-        camera.up = .Up;
         camera.fovy = 45f;
-        camera.projection = .Perspective;
 
         Vector3 cubePosition = .Zero;
         Vector2 cubeScreenPosition = .Zero;

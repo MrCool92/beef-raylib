@@ -98,9 +98,9 @@ class Program
             ballPosition.x += ballSpeed.x;
             ballPosition.y += ballSpeed.y;
             if ((ballPosition.x >= (GetScreenWidth() - ballRadius)) || (ballPosition.x <= ballRadius))
-                ballSpeed.x *= -1.0f;
+                ballSpeed.x *= -1f;
             if ((ballPosition.y >= (GetScreenHeight() - ballRadius)) || (ballPosition.y <= ballRadius))
-                ballSpeed.y *= -1.0f;
+                ballSpeed.y *= -1f;
 
             BeginDrawing();
             defer EndDrawing();

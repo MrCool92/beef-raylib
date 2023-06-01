@@ -34,7 +34,6 @@ class Program
         defer CloseWindow();
 
         cameraPlayer1.fovy = 45f;
-        cameraPlayer1.up.y = 1f;
         cameraPlayer1.target.y = 1f;
         cameraPlayer1.position.z = -3f;
         cameraPlayer1.position.y = 1f;
@@ -43,7 +42,6 @@ class Program
         defer UnloadRenderTexture(screenPlayer1);
 
         cameraPlayer2.fovy = 45f;
-        cameraPlayer2.up.y = 1f;
         cameraPlayer2.target.y = 3f;
         cameraPlayer2.position.x = -3f;
         cameraPlayer2.position.y = 3f;
@@ -51,7 +49,7 @@ class Program
         RenderTexture screenPlayer2 = LoadRenderTexture(screenWidth / 2, screenHeight);
         defer UnloadRenderTexture(screenPlayer2);
 
-        Rectangle splitScreenRect = Rectangle(0f, 0f, (float)screenPlayer1.texture.width, (float) - screenPlayer1.texture.height);
+        Rectangle splitScreenRect = .(0f, 0f, (float)screenPlayer1.texture.width, (float) - screenPlayer1.texture.height);
 
         SetTargetFPS(60);
 
@@ -64,7 +62,7 @@ class Program
                 cameraPlayer1.position.z += offsetThisFrame;
                 cameraPlayer1.target.z += offsetThisFrame;
             }
-            else if (IsKeyDown(.S))
+            if (IsKeyDown(.S))
             {
                 cameraPlayer1.position.z -= offsetThisFrame;
                 cameraPlayer1.target.z -= offsetThisFrame;
@@ -75,7 +73,7 @@ class Program
                 cameraPlayer2.position.x += offsetThisFrame;
                 cameraPlayer2.target.x += offsetThisFrame;
             }
-            else if (IsKeyDown(.Down))
+            if (IsKeyDown(.Down))
             {
                 cameraPlayer2.position.x -= offsetThisFrame;
                 cameraPlayer2.target.x -= offsetThisFrame;
@@ -98,10 +96,11 @@ class Program
             EndTextureMode();
 
             BeginDrawing();
+            defer EndDrawing();
+
             ClearBackground(.Black);
-            DrawTextureRec(screenPlayer1.texture, splitScreenRect, Vector2.Zero, .White);
-            DrawTextureRec(screenPlayer2.texture, splitScreenRect, Vector2(screenWidth / 2f, 0f), .White);
-            EndDrawing();
+            DrawTextureRec(screenPlayer1.texture, splitScreenRect, .Zero, .White);
+            DrawTextureRec(screenPlayer2.texture, splitScreenRect, .(screenWidth / 2f, 0f), .White);
         }
 
         return 0;
@@ -111,14 +110,14 @@ class Program
     {
         int count = 5;
         float spacing = 4;
-        DrawPlane(Vector3.Zero, Vector2(50f, 50f), .Beige);
+        DrawPlane(.Zero, .(50f, 50f), .Beige);
 
         for (float x = -count * spacing; x <= count * spacing; x += spacing)
         {
             for (float z = -count * spacing; z <= count * spacing; z += spacing)
             {
-                DrawCube(Vector3(x, 1.5f, z), 1f, 1f, 1f, .Lime);
-                DrawCube(Vector3(x, 0.5f, z), 0.25f, 1f, 0.25f, .Brown);
+                DrawCube(.(x, 1.5f, z), 1f, 1f, 1f, .Lime);
+                DrawCube(.(x, 0.5f, z), 0.25f, 1f, 0.25f, .Brown);
             }
         }
 

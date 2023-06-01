@@ -72,10 +72,9 @@ class Program
 
                     if (gesturesCount >= MAX_GESTURE_STRINGS)
                     {
-                        for (int i = 0; i < MAX_GESTURE_STRINGS; i++)
-                        {
+                        for (int i < MAX_GESTURE_STRINGS)
                             TextCopy(&gestureStrings[i], "\0");
-                        }
+
                         gesturesCount = 0;
                     }
                 }
@@ -91,7 +90,7 @@ class Program
 
             DrawText("GESTURES TEST AREA", screenWidth - 270, screenHeight - 40, 20, Fade(.Gray, 0.5f));
 
-            for (int i = 0; i < gesturesCount; i++)
+            for (int i < gesturesCount)
             {
                 DrawRectangle(10, 30 + 20 * (int32)i, 200, 20, Fade(.LightGray, (i % 2 == 00) ? 0.5f : 0.3f));
                 DrawText(&gestureStrings[i], 35, 36 + 20 * (int32)i, 10, (i < gesturesCount - 1) ? .DarkGray : .Maroon);

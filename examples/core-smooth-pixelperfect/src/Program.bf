@@ -43,14 +43,14 @@ class Program
         RenderTexture2D target = LoadRenderTexture(virtualScreenWidth, virtualScreenHeight);
         defer UnloadRenderTexture(target);
 
-        Rectangle rec01 = Rectangle(70f, 35f, 20f, 20f);
-        Rectangle rec02 = Rectangle(90f, 55f, 30f, 10f);
-        Rectangle rec03 = Rectangle(80f, 65f, 15f, 25f);
+        Rectangle rec01 = .(70f, 35f, 20f, 20f);
+        Rectangle rec02 = .(90f, 55f, 30f, 10f);
+        Rectangle rec03 = .(80f, 65f, 15f, 25f);
 
-        Rectangle sourceRec = Rectangle(0f, 0f, (float)target.texture.width, -(float)target.texture.height);
-        Rectangle destRec = Rectangle(-virtualRatio, -virtualRatio, screenWidth + (virtualRatio * 2), screenHeight + (virtualRatio * 2));
+        Rectangle sourceRec = .(0f, 0f, (float)target.texture.width, -(float)target.texture.height);
+        Rectangle destRec = .(-virtualRatio, -virtualRatio, screenWidth + (virtualRatio * 2), screenHeight + (virtualRatio * 2));
 
-        Vector2 origin = Vector2.Zero;
+        Vector2 origin = .Zero;
 
         float rotation = 0f;
 
@@ -59,7 +59,7 @@ class Program
 
         while (!WindowShouldClose())
         {
-            rotation += 60.0f * GetFrameTime();
+            rotation += 60f * GetFrameTime();
 
             cameraX = ((float)Math.Sin(GetTime()) * 50f) - 10f;
             cameraY = (float)Math.Cos(GetTime()) * 30f;
@@ -85,6 +85,8 @@ class Program
             EndTextureMode();
 
             BeginDrawing();
+            defer EndDrawing();
+
             ClearBackground(.Red);
 
             BeginMode2D(screenSpaceCamera);
@@ -94,7 +96,6 @@ class Program
             DrawText(TextFormat("Screen resolution: %ix%i", screenWidth, screenHeight), 10, 10, 20, .DarkBlue);
             DrawText(TextFormat("World resolution: %ix%i", virtualScreenWidth, virtualScreenHeight), 10, 40, 20, .DarkGreen);
             DrawFPS(GetScreenWidth() - 95, 10);
-            EndDrawing();
         }
 
         return 0;

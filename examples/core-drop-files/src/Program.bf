@@ -47,7 +47,7 @@ class Program
                 FilePathList droppedFiles = LoadDroppedFiles();
                 defer UnloadDroppedFiles(droppedFiles);
 
-                for (int i = 0; i < droppedFiles.count; i++)
+                for (int i < droppedFiles.count)
                 {
                     if (filePaths.Count < MAX_FILEPATH_RECORDED)
                     {
@@ -67,7 +67,7 @@ class Program
             else
             {
                 DrawText("Dropped files:", 100, 40, 20, .DarkGray);
-                for (int i = 0; i < filePaths.Count; i++)
+                for (int i < filePaths.Count)
                 {
                     DrawRectangle(0, (int32)(85 + 40 * i), screenWidth, 40, Fade(.LightGray, (i % 2 == 0) ? 0.5f :  0.3f));
                     DrawText(filePaths[i], 120, (int32)(100 + 40 * i), 10, .Gray);

@@ -1,0 +1,6 @@
+FileVersion = 1
+Dependencies = {corlib = "*", beef-raylib = "*"}
+
+[Project]
+Name = "models-ortographic-projection"
+StartupObject = "models_ortographic_projection.Program"

@@ -126,7 +126,6 @@ class Program
             for (int i = MAX_CIRCLES - 1; i >= 0; i--)
                 DrawCircleV(circles[i].position, circles[i].radius, Fade(circles[i].color, circles[i].alpha));
 
-            // Draw time bar
             DrawRectangle(20, screenHeight - 20 - 12, screenWidth - 40, 12, .LightGray);
             DrawRectangle(20, screenHeight - 20 - 12, (int32)timePlayed, 12, .Maroon);
             DrawRectangleLines(20, screenHeight - 20 - 12, screenWidth - 40, 12, .Gray);

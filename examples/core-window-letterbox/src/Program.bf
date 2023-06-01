@@ -15,6 +15,7 @@
 
 using System;
 using Raylib;
+using Raylib.Raymath;
 
 namespace core_window_letterbox;
 
@@ -40,7 +41,7 @@ class Program
 
         Color[] colors = scope Color[10];
 
-        for (int i = 0; i < 10; i++)
+        for (int i < 10)
             colors[i] = .((uint8)GetRandomValue(100, 250), (uint8)GetRandomValue(50, 150), (uint8)GetRandomValue(10, 100), 255);
 
         while (!WindowShouldClose())
@@ -49,7 +50,7 @@ class Program
 
             if (IsKeyPressed(.Space))
             {
-                for (int i = 0; i < 10; i++)
+                for (int i < 10)
                     colors[i] = .((uint8)GetRandomValue(100, 250), (uint8)GetRandomValue(50, 150), (uint8)GetRandomValue(10, 100), 255);
             }
 
@@ -60,33 +61,32 @@ class Program
             virtualMouse = Vector2Clamp(virtualMouse, .Zero, .((float)gameScreenWidth, (float)gameScreenHeight));
 
             BeginTextureMode(target);
-            {
-                ClearBackground(.RayWhite);
 
-                for (int i = 0; i < 10; i++)
-                    DrawRectangle(0, (int32)((gameScreenHeight / 10) * i), gameScreenWidth, gameScreenHeight / 10, colors[i]);
+            ClearBackground(.RayWhite);
 
-                DrawText("If executed inside a window,\nyou can resize the window,\nand see the screen scaling!", 10, 25, 20, .White);
-                DrawText(TextFormat("Default Mouse: [%i , %i]", (int)mouse.x, (int)mouse.y), 350, 25, 20, .Green);
-                DrawText(TextFormat("Virtual Mouse: [%i , %i]", (int)virtualMouse.x, (int)virtualMouse.y), 350, 55, 20, .Yellow);
-            }
+            for (int i < 10)
+                DrawRectangle(0, (int32)((gameScreenHeight / 10) * i), gameScreenWidth, gameScreenHeight / 10, colors[i]);
+
+            DrawText("If executed inside a window,\nyou can resize the window,\nand see the screen scaling!", 10, 25, 20, .White);
+            DrawText(TextFormat("Default Mouse: [%i , %i]", (int)mouse.x, (int)mouse.y), 350, 25, 20, .Green);
+            DrawText(TextFormat("Virtual Mouse: [%i , %i]", (int)virtualMouse.x, (int)virtualMouse.y), 350, 55, 20, .Yellow);
+
             EndTextureMode();
 
             BeginDrawing();
-            {
-                ClearBackground(.Blue);
+            defer EndDrawing();
 
-                Rectangle source = .(0f, 0f, (float)target.texture.width, -(float)target.texture.height);
-                Rectangle destination = .()
-                    {
-                        x = (GetScreenWidth() - ((float)gameScreenWidth * scale)) * 0.5f,
-                        y = (GetScreenHeight() - ((float)gameScreenHeight * scale)) * 0.5f,
-                        width = (float)gameScreenWidth * scale,
-                        height = (float)gameScreenHeight * scale
-                    };
-                DrawTexturePro(target.texture, source, destination, .Zero, 0f, .White);
-            }
-            EndDrawing();
+            ClearBackground(.Blue);
+
+            Rectangle source = .(0f, 0f, (float)target.texture.width, -(float)target.texture.height);
+            Rectangle destination = .()
+                {
+                    x = (GetScreenWidth() - ((float)gameScreenWidth * scale)) * 0.5f,
+                    y = (GetScreenHeight() - ((float)gameScreenHeight * scale)) * 0.5f,
+                    width = (float)gameScreenWidth * scale,
+                    height = (float)gameScreenHeight * scale
+                };
+            DrawTexturePro(target.texture, source, destination, .Zero, 0f, .White);
         }
 
         return 0;

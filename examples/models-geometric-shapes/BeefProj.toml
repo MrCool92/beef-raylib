@@ -1,0 +1,6 @@
+FileVersion = 1
+Dependencies = {corlib = "*", beef-raylib = "*"}
+
+[Project]
+Name = "models-geometric-shapes"
+StartupObject = "models_geometric_shapes.Program"

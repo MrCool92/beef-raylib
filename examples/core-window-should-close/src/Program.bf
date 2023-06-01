@@ -57,7 +57,8 @@ class Program
                 DrawRectangle(0, 100, screenWidth, 200, .Black);
                 DrawText("Are you sure you want to exit program? [Y/N]", 40, 180, 30, .White);
             }
-            else DrawText("Try to close the window to get confirmation message!", 120, 200, 20, .LightGray);
+            else
+                DrawText("Try to close the window to get confirmation message!", 120, 200, 20, .LightGray);
         }
 
         return 0;

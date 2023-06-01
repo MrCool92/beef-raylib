@@ -19,8 +19,8 @@ public struct Camera3D
 
     public this()
     {
-        this.position = .();
-        this.target = .();
+        this.position = .Zero;
+        this.target = .Zero;
         this.up = .Up;
         this.fovy = 60;
         this.projection = .Perspective;

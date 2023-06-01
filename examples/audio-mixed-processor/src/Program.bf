@@ -80,7 +80,7 @@ class Program
             DrawText(TextFormat("EXPONENT = %.2f", exponent), 215, 180, 20, .LightGray);
 
             DrawRectangle(199, 199, 402, 34, .LightGray);
-            for (int32 i = 0; i < 400; i++)
+            for (int32 i < 400)
                 DrawLine(201 + i, (int32)(232 - averageVolume[i] * 32), 201 + i, 232, .Maroon);
             DrawRectangleLines(199, 199, 402, 34, .Gray);
 
@@ -96,7 +96,7 @@ class Program
         float* samples = (float*)buffer;
         float average = 0f;
 
-        for (uint32 frame = 0; frame < frames; frame++)
+        for (uint32 frame < frames)
         {
             float* left = &samples[frame * 2 + 0];
             float* right = &samples[frame * 2 + 1];
@@ -108,7 +108,7 @@ class Program
             average += Math.Abs(*right) / frames;
         }
 
-        for (int i = 0; i < 399; i++)
+        for (int i < 399)
             averageVolume[i] = averageVolume[i + 1];
 
         averageVolume[399] = average;
