@@ -31,11 +31,8 @@ class Program
         camera.position = .(0.2f, 0.4f, 0.2f);
         camera.target = .(0.185f, 0.4f, 0f);
         camera.fovy = 45f;
-        Vector3 position = .Zero;
 
         Image imMap = LoadImage("../resources/cubicmap.png");
-        defer UnloadImage(imMap);
-
         Texture2D cubicmap = LoadTextureFromImage(imMap);
         defer UnloadTexture(cubicmap);
 
