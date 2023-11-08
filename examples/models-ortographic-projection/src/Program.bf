@@ -27,8 +27,8 @@ class Program
 {
     public static int Main(String[] args)
     {
-        const int screenWidth = 800;
-        const int screenHeight = 450;
+        const int32 screenWidth = 800;
+        const int32 screenHeight = 450;
 
         InitWindow(screenWidth, screenHeight, "raylib [models] example - geometric shapes");
         defer CloseWindow();

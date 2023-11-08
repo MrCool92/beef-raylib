@@ -1,0 +1,6 @@
+FileVersion = 1
+Dependencies = {corlib = "*", beef-raylib = "*"}
+
+[Project]
+Name = "textures-background-scrolling"
+StartupObject = "textures_background_scrolling.Program"

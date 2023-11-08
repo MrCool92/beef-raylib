@@ -15,7 +15,7 @@
 using System;
 using System.Collections;
 using Raylib;
-using Raylib.Reasings;
+using Raylib.Easings;
 
 namespace easings_testbed;
 
@@ -112,8 +112,8 @@ class Program
 {
     public static int Main(String[] args)
     {
-        const int screenWidth = 800;
-        const int screenHeight = 450;
+        const int32 screenWidth = 800;
+        const int32 screenHeight = 450;
 
         InitWindow(screenWidth, screenHeight, "raylib [easings] example - easings testbed");
 

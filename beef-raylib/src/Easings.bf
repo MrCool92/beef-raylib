@@ -13,7 +13,7 @@
 
 using System;
 
-namespace Raylib.Reasings;
+namespace Raylib.Easings;
 
 static
 {

@@ -80,7 +80,10 @@ static
     [CLink, CallingConvention(.Cdecl)] public static extern void BeginShaderMode(Shader shader);
     /// End custom shader drawing (use default shader)
     [CLink, CallingConvention(.Cdecl)] public static extern void EndShaderMode();
-    // TODO
+    /// Begin blending mode (alpha, additive, multiplied, subtract, custom)
+    [CLink, CallingConvention(.Cdecl)] public static extern void BeginBlendMode(BlendMode mode);
+    /// End blending mode (reset to default: alpha blending)
+    [CLink, CallingConvention(.Cdecl)] public static extern void EndBlendMode();
     /// Begin scissor mode (define screen area for following drawing)
     [CLink, CallingConvention(.Cdecl)] public static extern void BeginScissorMode(int32 x, int32 y, int32 width, int32 height);
     /// End scissor mode

@@ -1,0 +1,6 @@
+FileVersion = 1
+Dependencies = {corlib = "*", beef-raylib = "*"}
+
+[Project]
+Name = "textures-blend-modes"
+StartupObject = "textures_blend_modes.Program"

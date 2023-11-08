@@ -1,0 +1,6 @@
+FileVersion = 1
+Dependencies = {corlib = "*", beef-raylib = "*"}
+
+[Project]
+Name = "textures-bunnymark"
+StartupObject = "textures_bunnymark.Program"
